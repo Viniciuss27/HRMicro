@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Hr-Config-Server
+  cloud:
+    config:
+      server:
+        git:
+          default-label: main
+          uri: https://github.com/Viniciuss27/MS_Config
+
+server:
+  port: 8888
