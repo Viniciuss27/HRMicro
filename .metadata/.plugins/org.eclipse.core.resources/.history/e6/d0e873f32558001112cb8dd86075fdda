@@ -1,3 +1,0 @@
-spring.application.name=Hr-Config-Server
-spring.cloud.config.server.git.default-label=main
-server.port=8888
