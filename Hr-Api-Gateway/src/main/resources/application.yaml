@@ -33,6 +33,14 @@ spring:
             - Path=/hr-user/**
           filters:
             - StripPrefix=1
+           
+        # Oauth Service
+        - id: hr-oauth
+          uri: lb://hr-oauth
+          predicates:
+            - Path=/hr-oauth/**
+          filters:
+            - StripPrefix=1
 
 eureka:
   client:
