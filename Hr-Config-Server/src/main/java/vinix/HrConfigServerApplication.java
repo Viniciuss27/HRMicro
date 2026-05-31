@@ -22,8 +22,17 @@ public class HrConfigServerApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		//System.out.println("USERNAME = " + user);
-		//System.out.println("PASSWORD = " + pass);
+		/*System.out.println("USERNAME = " + user);
+		System.out.println("PASSWORD = " + pass);
+		
+		private Double py = 22.0;
+	    private Double java = 2.0;
+	
+		if(py > java) {
+			System.out.println("verdade python é maior e melhor que Java ");
+		}else{
+			System.out.println("impossivel");
+		}*/
 		
 	}
 

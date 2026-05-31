@@ -1,17 +1,10 @@
 spring:
   application:
-    name: hr-worker
+    name: hr-user
 
-  profiles:
-    active: test
-
-  # Config Server (Spring Cloud Config)
-  config:
-    import: optional:configserver:http://localhost:8888
-
-  # Banco H2 (ambiente de teste)
   datasource:
     url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
     username: sa
     password: ""
 
@@ -22,9 +15,13 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
-    defer-datasource-initialization: true
+      ddl-auto: create       
+    defer-datasource-initialization: true  
     show-sql: true
+
+  sql:
+    init:
+      mode: always
 
 server:
   port: ${port:0}
@@ -39,16 +36,3 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     register-with-eureka: true
     fetch-registry: true
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-
-  endpoint:
-    health:
-      show-details: always
-
-test:
-  config: "teste local"

@@ -4,21 +4,17 @@ spring:
 
   cloud:
     gateway:
-
-      # 🔹 Descoberta automática via Eureka (opcional)
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
 
-      # 🔹 Rotas explícitas (recomendado)
       routes:
-
         # Worker Service
         - id: hr-worker
           uri: lb://hr-worker
           predicates:
-            - Path=/workers/**
+            - Path=/hr-worker/**
           filters:
             - StripPrefix=1
 
@@ -26,7 +22,15 @@ spring:
         - id: hr-payroll
           uri: lb://hr-payroll
           predicates:
-            - Path=/payments/**
+            - Path=/hr-payroll/**
+          filters:
+            - StripPrefix=1
+
+        # User Service
+        - id: hr-user
+          uri: lb://hr-user
+          predicates:
+            - Path=/hr-user/**
           filters:
             - StripPrefix=1
 
