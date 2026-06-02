@@ -1,11 +1,17 @@
 package vinix.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-public class User implements Serializable{
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class User implements UserDetails, Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
@@ -77,7 +83,42 @@ public class User implements Serializable{
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles.stream() // converte para stream 
+				.map(x -> new SimpleGrantedAuthority 
+				// cada stream é convertido para SimpleGrantedAuthority
+				(x.getRoleName()))
+				// consegue pegar por ser uma implementação do GrantedAuthority 
+				.collect(Collectors.toList());
+		
+		/*retorna as roles convertidas para o Spring Security*/
+	}
+
+	@Override
+	public String getUsername() {
+		return email; /*retorna o email como identificador do usuário*/
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true; /*conta não expirada*/
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true; /*conta não bloqueada*/
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true; /*senha não expirada*/
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true; /*conta ativa*/
+	}
 
 }

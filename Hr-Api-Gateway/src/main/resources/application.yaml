@@ -33,7 +33,7 @@ spring:
             - Path=/hr-user/**
           filters:
             - StripPrefix=1
-           
+
         # Oauth Service
         - id: hr-oauth
           uri: lb://hr-oauth
@@ -41,7 +41,7 @@ spring:
             - Path=/hr-oauth/**
           filters:
             - StripPrefix=1
-
+            - RemoveRequestHeader=Cookie     
 eureka:
   client:
     service-url:
