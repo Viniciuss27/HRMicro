@@ -41,7 +41,7 @@ spring:
             - Path=/hr-oauth/**
           filters:
             - StripPrefix=1
-            - RemoveRequestHeader=Cookie     
+            - RemoveRequestHeader=Cookie
 eureka:
   client:
     service-url:
@@ -49,3 +49,7 @@ eureka:
 
 server:
   port: 8765
+
+security: #mesma chave do oauth
+  jwt:
+    secret: MY-SECRET-KEY-MUST-BE-256-BITS-LONG!!
