@@ -3,7 +3,7 @@ spring:
     name: hr-worker
 
   profiles:
-    active: test
+    active: dev
 
   # Config Server (Spring Cloud Config)
   config:
